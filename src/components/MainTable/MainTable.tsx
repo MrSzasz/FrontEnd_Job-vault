@@ -9,7 +9,7 @@ const MainTable = (): React.ReactElement => {
   const { jobs } = useContext(JobsContext)
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="mx-auto px-2 py-4 md:container md:py-10">
       <DataTable columns={columns} data={jobs} />
     </div>
   )

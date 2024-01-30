@@ -24,9 +24,10 @@ export const columns: Array<ColumnDef<JobColumns>> = [
           onClick={() => {
             column.toggleSorting(column.getIsSorted() === 'asc')
           }}
+          className="text-xs md:text-sm"
         >
-          Status
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <span className="hidden md:inline">Status</span>
+          <ArrowUpDown className="ml-1 h-3 w-3 md:h-4 md:w-4" />
         </Button>
       )
     },
@@ -53,8 +54,8 @@ export const columns: Array<ColumnDef<JobColumns>> = [
     accessorKey: 'position',
     header: () => {
       return (
-        <div className="flex items-center justify-center gap-2">
-          Position <ExternalLink size="1em" />
+        <div className="flex items-center justify-center text-xs md:text-sm">
+          Position <ExternalLink className="ml-1 h-3 w-3" />
         </div>
       )
     },
@@ -73,7 +74,13 @@ export const columns: Array<ColumnDef<JobColumns>> = [
   },
   {
     accessorKey: 'company',
-    header: 'Company',
+    header: () => {
+      return (
+        <div className="flex items-center justify-center text-xs md:text-sm">
+          Company
+        </div>
+      )
+    },
     cell: ({ row }) => {
       return (
         <span
@@ -93,9 +100,10 @@ export const columns: Array<ColumnDef<JobColumns>> = [
           onClick={() => {
             column.toggleSorting(column.getIsSorted() === 'asc')
           }}
+          className="text-xs md:text-sm"
         >
           Date
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDown className="ml-1 h-3 w-3 md:h-4 md:w-4" />
         </Button>
       )
     },

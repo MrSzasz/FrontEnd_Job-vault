@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from 'uuid'
 import type { JobColumns } from '@/types/types'
 
 export const getAllJobsInLocalStorage = (): JobColumns[] | [] => {
@@ -20,7 +21,7 @@ export const addNewJob = (
     ...savedJobs,
     {
       ...newJob,
-      id: crypto.randomUUID(),
+      id: uuidv4(),
       date: new Date().toLocaleDateString(),
     },
   ]

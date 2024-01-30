@@ -77,7 +77,7 @@ const AddNewJobForm = ({
           className="space-y-8"
         >
           <div className="flex w-full flex-col gap-3">
-            <div className="flex flex-col justify-between sm:flex-row">
+            <div className="flex flex-col justify-between gap-3 sm:flex-row">
               <FormField
                 control={form.control}
                 name="position"

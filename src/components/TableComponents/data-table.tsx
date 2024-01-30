@@ -70,7 +70,7 @@ const DataTable = <TData, TValue>({
 
   return (
     <div className="rounded-md border">
-      <div className="flex items-center justify-between p-4">
+      <div className="flex flex-col-reverse items-center justify-between gap-4 p-4 md:flex-row">
         <Input
           placeholder="Filter positions..."
           value={
@@ -131,8 +131,8 @@ const DataTable = <TData, TValue>({
         {!isLoading && (
           <TableFooter className="bg-inherit">
             <TableRow>
-              <TableCell colSpan={3}></TableCell>
-              <TableCell colSpan={2} className="text-right">
+              <TableCell colSpan={2}></TableCell>
+              <TableCell colSpan={3} className="text-right">
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <div className="flex w-fit items-end justify-center gap-2">

@@ -11,7 +11,7 @@ const ShowJobInfo = ({ row }: { row: Row<JobColumns> }): React.ReactElement => {
   return (
     <>
       <DialogHeader>
-        <DialogTitle>
+        <DialogTitle className="text-start">
           <a
             href={row.original.positionLink}
             target="_blank"
@@ -20,7 +20,6 @@ const ShowJobInfo = ({ row }: { row: Row<JobColumns> }): React.ReactElement => {
           >
             {row.original.position} <ExternalLink size=".75em" />
           </a>
-          <br />
           <small className="text-xs text-gray-500">
             {capitalizeFirst(row.original.company)} |{' '}
             <span className={statusColors[row.original.status]}>
