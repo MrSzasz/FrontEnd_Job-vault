@@ -34,3 +34,15 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# hidden things
+hidden
+hidden/*
+
+# notes
+notes.md
+notes.txt
+
+# todo's
+TODO.md
+TODO.*

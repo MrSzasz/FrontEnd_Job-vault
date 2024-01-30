@@ -1,36 +1,86 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Job Vault
 
-## Getting Started
+Effortlessly curate and save your preferred job listings with Job Vault's intuitive interface. Seamlessly store and organize opportunities that match your career goals, all at your fingertips. Start building your personalized job archive with Job Vault now.
 
-First, run the development server:
+[![NextJS](https://img.shields.io/badge/next%20js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white)](https://nextjs.org/) [![Typescript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/) [![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/) [![Shadcn/ui](https://img.shields.io/badge/shadcn%2Fui-000000?style=for-the-badge&logo=shadcnui&logoColor=white)](https://ui.shadcn.com/) [![Cypress](https://img.shields.io/badge/Cypress-17202C?style=for-the-badge&logo=cypress&logoColor=white)](https://www.cypress.io/) [![PNPM](https://img.shields.io/badge/pnpm-yellow?style=for-the-badge&logo=pnpm&logoColor=white)](https://pnpm.io/) [![ESLint](https://img.shields.io/badge/eslint-3A33D1?style=for-the-badge&logo=eslint&logoColor=white)](https://eslint.org/)
+
+## Table of Contents
+
+- [Introduction](#introduction)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Tests](#tests)
+- [License](#license)
+
+## Introduction
+
+_Job Vault_ is a web application that allows users to have a record of their job applications and their status. This project was created to showcase my skills in front-end development and to provide a useful tool for the people who need to have a record of their job search history.
+
+## Features
+
+- CRUD operations for managing jobs.
+- Responsive design for a seamless experience on multiple devices.
+- Download of the record as JSON and CSV.
+- Upload of a record as JSON and CSV.
+
+## Technologies Used
+
+- NextJs
+- Shadcn/ui
+- Tailwind
+- Typescript
+- pnpm
+
+- **Deployment:**
+  - Vercel
+
+## Installation
+
+1. Clone the repository:
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone https://github.com/MrSzasz/FrontEnd_Job-vault.git
+cd frontend-job_vault
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open the console on the root folder to start the server and the client.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## Usage
 
-## Learn More
+Open your browser and navigate to `http://localhost:3000` to access the app.
+Click on the `Add job` button to create a new job, then save it.
+Now, you can edit and delete the job by clicking on the `...` button. If you want to edit, just modify the fields and save it. If you want to delete it, click on `Delete job`.
 
-To learn more about Next.js, take a look at the following resources:
+## Tests
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+This app utilizes Cypress for end-to-end testing.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+### Prerequisites
 
-## Deploy on Vercel
+Before running the tests, make sure you have the following dependencies installed:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- Node.js: [Download Node.js](https://nodejs.org/)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Installing Dependencies
+
+```bash
+# Install project dependencies
+pnpm install
+```
+
+### Running tests
+
+```bash
+# Run end-to-end tests with Cypress
+npm run cypress:open
+```
+
+## License
+
+This project is licensed under the MIT License.
