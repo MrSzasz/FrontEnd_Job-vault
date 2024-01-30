@@ -70,9 +70,6 @@ dependencies:
     version: 3.22.4
 
 devDependencies:
-  '@faker-js/faker':
-    specifier: github:faker-js/faker
-    version: github.com/faker-js/faker/23e52bf602085a9af5e0840eede7d9ef5561775b
   '@types/node':
     specifier: ^20
     version: 20.11.5
@@ -4543,10 +4540,3 @@ packages:
   /zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
     dev: false
-
-  github.com/faker-js/faker/23e52bf602085a9af5e0840eede7d9ef5561775b:
-    resolution: {tarball: https://codeload.github.com/faker-js/faker/tar.gz/23e52bf602085a9af5e0840eede7d9ef5561775b}
-    name: '@faker-js/faker'
-    version: 8.4.0
-    engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0, npm: '>=6.14.13'}
-    dev: true
