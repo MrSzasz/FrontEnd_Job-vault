@@ -6,6 +6,7 @@ import { Kanit } from 'next/font/google'
 import '../styles/globals.css'
 
 const fontSans = Kanit({
+  // https://fonts.google.com/specimen/Kanit
   subsets: ['latin'],
   weight: ['400', '500', '700'],
 })
