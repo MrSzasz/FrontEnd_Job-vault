@@ -2,12 +2,12 @@ import { ThemeProvider } from '@/components/theme-providers'
 import JobsProvider from '@/context/JobContext'
 import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
-import { Inter as FontSans } from 'next/font/google'
+import { Kanit } from 'next/font/google'
 import '../styles/globals.css'
 
-const fontSans = FontSans({
+const fontSans = Kanit({
   subsets: ['latin'],
-  variable: '--font-sans',
+  weight: ['400', '500', '700'],
 })
 
 export const metadata: Metadata = {
@@ -26,7 +26,7 @@ const RootLayout = ({
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
-          fontSans.variable,
+          fontSans.className,
         )}
       >
         <ThemeProvider
