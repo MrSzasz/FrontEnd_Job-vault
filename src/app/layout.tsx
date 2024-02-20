@@ -5,10 +5,11 @@ import type { Metadata } from 'next'
 import { Kanit } from 'next/font/google'
 import '../styles/globals.css'
 
-const fontSans = Kanit({
+const fontKanit = Kanit({
   // https://fonts.google.com/specimen/Kanit
   subsets: ['latin'],
   weight: ['400', '500', '700'],
+  variable: '--font-kanit',
 })
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ const RootLayout = ({
       <body
         className={cn(
           'min-h-screen bg-background font-sans antialiased',
-          fontSans.className,
+          fontKanit.variable,
         )}
       >
         <ThemeProvider
