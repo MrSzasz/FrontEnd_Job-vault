@@ -27,7 +27,7 @@ const RootLayout = ({
     <html lang="en">
       <body
         className={cn(
-          'min-h-screen bg-background font-sans antialiased',
+          'kanit min-h-screen bg-background antialiased',
           fontKanit.variable,
         )}
       >

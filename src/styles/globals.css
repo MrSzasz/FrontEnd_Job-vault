@@ -57,3 +57,7 @@
     @apply bg-background text-foreground;
   }
 }
+
+.kanit {
+  font-family: var(--font-kanit);
+}
