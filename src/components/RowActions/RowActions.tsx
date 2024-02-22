@@ -26,7 +26,9 @@ const RowActions = ({ row }: { row: Row<JobColumns> }): React.ReactElement => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DropdownMenu>
-        <DropdownMenuTrigger>...</DropdownMenuTrigger>
+        <DropdownMenuTrigger className="md:h-8 md:w-10">
+          ...
+        </DropdownMenuTrigger>
         <DropdownMenuContent>
           <DialogTrigger asChild>
             <DropdownMenuItem

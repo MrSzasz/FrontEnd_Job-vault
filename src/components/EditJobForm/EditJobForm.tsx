@@ -146,7 +146,12 @@ const EditJobForm = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea required placeholder="Job description" {...field} />
+                  <Textarea
+                    required
+                    placeholder="Job description"
+                    rows={7}
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -161,6 +166,7 @@ const EditJobForm = ({
                   <Textarea
                     required
                     placeholder="Job requirements"
+                    rows={7}
                     {...field}
                   />
                 </FormControl>
@@ -174,7 +180,7 @@ const EditJobForm = ({
             render={({ field }) => (
               <FormItem>
                 <FormControl>
-                  <Textarea placeholder="Job extras" {...field} />
+                  <Textarea placeholder="Job extras" rows={7} {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

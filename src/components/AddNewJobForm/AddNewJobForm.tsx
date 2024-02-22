@@ -47,7 +47,7 @@ const AddNewJobForm = ({
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      status: 'sent',
+      status: 'send later',
       position: '',
       positionLink: '',
       company: '',
@@ -150,6 +150,7 @@ const AddNewJobForm = ({
                     <Textarea
                       required
                       placeholder="Job description"
+                      rows={7}
                       {...field}
                     />
                   </FormControl>
@@ -166,6 +167,7 @@ const AddNewJobForm = ({
                     <Textarea
                       required
                       placeholder="Job requirements"
+                      rows={7}
                       {...field}
                     />
                   </FormControl>
@@ -179,7 +181,7 @@ const AddNewJobForm = ({
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
-                    <Textarea placeholder="Job extras" {...field} />
+                    <Textarea placeholder="Job extras" rows={7} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

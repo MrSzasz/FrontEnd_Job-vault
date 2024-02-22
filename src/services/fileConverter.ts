@@ -1,4 +1,5 @@
 import { type JobColumns } from '@/types/types'
+import FileSaver from 'file-saver'
 import Papa from 'papaparse'
 
 export const downloadJobsData = (
@@ -14,14 +15,15 @@ export const downloadJobsData = (
     })
 
     data = URL.createObjectURL(blob)
+
+    const link = document.createElement('a')
+    link.setAttribute('href', data)
+    link.setAttribute('download', `jobs.${isCSV ? 'csv' : 'json'}`)
+    link.click()
   } else {
-    const json = 'data:text/json;charset=utf-8,' + JSON.stringify(dataToSave)
-
-    data = encodeURI(json)
+    const file = new File([JSON.stringify(dataToSave)], 'jobs.json', {
+      type: 'data:text/json;charset=utf-8',
+    })
+    FileSaver.saveAs(file)
   }
-
-  const link = document.createElement('a')
-  link.setAttribute('href', data)
-  link.setAttribute('download', `jobs.${isCSV ? 'csv' : 'json'}`)
-  link.click()
 }
