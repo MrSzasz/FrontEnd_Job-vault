@@ -4,6 +4,7 @@ import { cn } from '@/lib/utils'
 import type { Metadata } from 'next'
 import { Kanit } from 'next/font/google'
 import '../styles/globals.css'
+import SessionWrapper from '@/components/SessionWrapper/SessionWrapper'
 
 const fontKanit = Kanit({
   // https://fonts.google.com/specimen/Kanit
@@ -37,7 +38,9 @@ const RootLayout = ({
           enableSystem
           disableTransitionOnChange
         >
-          <JobsProvider>{children}</JobsProvider>
+          <SessionWrapper>
+            <JobsProvider>{children}</JobsProvider>
+          </SessionWrapper>
         </ThemeProvider>
       </body>
     </html>

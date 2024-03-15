@@ -56,12 +56,20 @@ const ShowJobInfo = ({ row }: { row: Row<JobColumns> }): React.ReactElement => {
           {row.original.cv !== null &&
           row.original.cv !== '' &&
           row.original.cv !== undefined ? (
-            <Button>Show CV</Button>
+            <Button asChild>
+              <a href={row.original.cv} target="_blank" rel="noreferrer">
+                Show CV
+              </a>
+            </Button>
           ) : null}
           {row.original.letter !== null &&
           row.original.letter !== '' &&
           row.original.letter !== undefined ? (
-            <Button>Show Cover Letter</Button>
+            <Button asChild>
+              <a href={row.original.letter} target="_blank" rel="noreferrer">
+                Show Cover Letter
+              </a>
+            </Button>
           ) : null}
         </div>
       </DialogFooter>

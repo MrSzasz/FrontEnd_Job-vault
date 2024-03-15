@@ -8,8 +8,10 @@ import { JobsContext } from '@/context/JobContext'
 const MainTable = (): React.ReactElement => {
   const { jobs } = useContext(JobsContext)
 
+  console.log(jobs)
+
   return (
-    <div className="mx-auto px-2 py-4 md:container md:py-10">
+    <div>
       <DataTable columns={columns} data={jobs} />
     </div>
   )
