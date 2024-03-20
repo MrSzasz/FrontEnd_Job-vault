@@ -9,9 +9,7 @@ import {
 } from '@/components/ui/popover'
 
 const UsersWarning = (): React.ReactElement => {
-  const { data: session, status } = useSession()
-
-  console.log({ status })
+  const { data: session } = useSession()
 
   return (
     <Popover>

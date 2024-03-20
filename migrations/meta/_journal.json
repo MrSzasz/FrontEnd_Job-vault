@@ -1,0 +1,27 @@
+{
+  "version": "5",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "5",
+      "when": 1710535992108,
+      "tag": "0000_tranquil_blizzard",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "5",
+      "when": 1710737559432,
+      "tag": "0001_careless_guardsmen",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "5",
+      "when": 1710737585649,
+      "tag": "0002_wise_sandman",
+      "breakpoints": true
+    }
+  ]
+}

@@ -380,4 +380,59 @@ describe('Job Vault e2e', () => {
       expect(data[0].position).to.eq(jobData[0].position)
     })
   })
+
+  it.only('should upload jobs with drag and drop', () => {
+    cy.visit('/')
+
+    // It should show the upload dialog
+    cy.get('button')
+      .contains(/load data/i)
+      .wait(1000)
+      .click()
+
+    // Upload button should be disabled
+    cy.get('button')
+      .contains(/load jobs/i)
+      .should('be.disabled')
+
+    // It should upload file
+    cy.get('label[for="dropzone-file"]').selectFile(
+      'cypress/downloads/jobs.csv',
+      {
+        action: 'drag-drop',
+      },
+    )
+    cy.get('button')
+      .contains(/load jobs/i)
+      .click()
+
+    // Job should be added to the table
+    cy.get('tr').contains(jobData[0].position)
+  })
+
+  it('should upload jobs without drag and drop', () => {
+    cy.visit('/')
+
+    // It should show the upload dialog
+    cy.get('button')
+      .contains(/load data/i)
+      .wait(1000)
+      .click()
+
+    // Upload button should be disabled
+    cy.get('button')
+      .contains(/load jobs/i)
+      .should('be.disabled')
+
+    // It should upload file
+    cy.get('label[for="dropzone-file"]')
+      .click()
+      .selectFile('cypress/downloads/jobs.csv')
+    cy.get('button')
+      .contains(/load jobs/i)
+      .click()
+
+    // Job should be added to the table
+    cy.get('tr').contains(jobData[0].position)
+  })
 })

@@ -32,7 +32,7 @@ import { useContext, useState } from 'react'
 import AddJobForm from '../AddJobForm/AddJobForm'
 import { JobsContext } from '@/context/JobContext'
 import { Download } from 'lucide-react'
-import { getAllJobsInLocalStorage } from '@/services/handleJobs'
+import { getAllJobs } from '@/services/handleJobs'
 import { downloadJobsData } from '@/services/fileConverter'
 
 interface DataTableProps<TData, TValue> {
@@ -62,10 +62,10 @@ const DataTable = <TData, TValue>({
     },
   })
 
-  const handleDownloadData = (csv: boolean): void => {
-    const jobs = getAllJobsInLocalStorage()
+  const handleDownloadData = async (csv: boolean): Promise<void> => {
+    const jobs = getAllJobs()
 
-    downloadJobsData(jobs, csv)
+    downloadJobsData(await jobs, csv)
   }
 
   return (
@@ -143,7 +143,7 @@ const DataTable = <TData, TValue>({
                   <DropdownMenuContent>
                     <DropdownMenuItem
                       onClick={() => {
-                        handleDownloadData(false)
+                        void handleDownloadData(false)
                       }}
                       className="cursor-pointer"
                     >
@@ -151,7 +151,7 @@ const DataTable = <TData, TValue>({
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
-                        handleDownloadData(true)
+                        void handleDownloadData(true)
                       }}
                       className="cursor-pointer"
                     >

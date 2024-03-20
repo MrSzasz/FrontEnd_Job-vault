@@ -2,6 +2,13 @@ import { type JobColumns } from '@/types/types'
 import FileSaver from 'file-saver'
 import Papa from 'papaparse'
 
+/**
+ * Downloads the jobs data as either CSV or JSON format.
+ *
+ * @param {JobColumns[]} dataToSave - The data to be saved.
+ * @param {boolean} isCSV - A flag indicating whether to save the data as CSV or JSON.
+ * @return {void} This function does not return a value.
+ */
 export const downloadJobsData = (
   dataToSave: JobColumns[],
   isCSV: boolean,

@@ -17,6 +17,11 @@ export const metadata: Metadata = {
   title: 'Job Vault',
   description:
     "Effortlessly curate and save your preferred job listings with Job Vault's intuitive interface. Seamlessly store and organize opportunities that match your career goals, all at your fingertips. Start building your personalized job archive with Job Vault now",
+  keywords:
+    'job, job listing, job vault, vault, linkedin, links, order, management, manager, careers, vite, react, next, tailwind, turso, sql, sqlite, drizzle, orm, save, notes, jobs, trabajo, carreras, links',
+  authors: [
+    { name: 'Tomas Lugo', url: 'https://lugo-tomas-portfolio.vercel.app/' },
+  ],
 }
 
 const RootLayout = ({

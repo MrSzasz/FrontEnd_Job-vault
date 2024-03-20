@@ -8,8 +8,6 @@ import { JobsContext } from '@/context/JobContext'
 const MainTable = (): React.ReactElement => {
   const { jobs } = useContext(JobsContext)
 
-  console.log(jobs)
-
   return (
     <div>
       <DataTable columns={columns} data={jobs} />

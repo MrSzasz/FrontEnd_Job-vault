@@ -54,7 +54,7 @@ const RowActions = ({ row }: { row: Row<JobColumns> }): React.ReactElement => {
           <DropdownMenuItem
             className="cursor-pointer text-red-500"
             onClick={() => {
-              handleDeleteJob(row.original.id)
+              void handleDeleteJob(row.original.id)
             }}
           >
             Delete job

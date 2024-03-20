@@ -4,28 +4,31 @@ import {
   addNewJob,
   deleteJob,
   editJob,
-  getAllJobsInLocalStorage,
+  getAllJobs,
 } from '@/services/handleJobs'
 import type { JobColumns } from '@/types/types'
 import { createContext, useEffect, useState } from 'react'
 import Papa from 'papaparse'
+import { useSession } from 'next-auth/react'
 
 interface JobsContextType {
   isLoading: boolean
   jobs: JobColumns[]
   handleAddJobsFromFile: (jobsFromFile: File) => void
-  handleAddJob: (jobToAdd: JobColumns | Omit<JobColumns, 'id' | 'date'>) => void
-  handleEditJob: (jobForEdit: JobColumns) => void
-  handleDeleteJob: (jobId: string) => void
+  handleAddJob: (
+    jobToAdd: JobColumns | Omit<JobColumns, 'id' | 'date'>,
+  ) => Promise<void>
+  handleEditJob: (jobForEdit: JobColumns) => Promise<void>
+  handleDeleteJob: (jobId: string) => Promise<void>
 }
 
 export const JobsContext = createContext<JobsContextType>({
   isLoading: true,
   jobs: [],
   handleAddJobsFromFile: () => {},
-  handleAddJob: () => {},
-  handleDeleteJob: () => {},
-  handleEditJob: () => {},
+  handleAddJob: async () => {},
+  handleDeleteJob: async () => {},
+  handleEditJob: async () => {},
 })
 
 const JobsProvider = ({
@@ -33,7 +36,7 @@ const JobsProvider = ({
 }: {
   children: React.ReactNode
 }): React.ReactElement => {
-  const [isLoading, setIsLoading] = useState<boolean>(true)
+  const { data: session, status } = useSession()
   const [jobs, setJobs] = useState<JobColumns[] | []>([])
 
   const handleAddJobsFromFile = (jobsFromFile: File): void => {
@@ -65,33 +68,46 @@ const JobsProvider = ({
     fileReader.readAsText(jobsFromFile)
   }
 
-  const handleAddJob = (
+  const handleAddJob = async (
     jobToAdd: JobColumns | Omit<JobColumns, 'id' | 'date'>,
-  ): void => {
-    const newJobArray = addNewJob(jobToAdd)
-    setJobs(newJobArray)
+  ): Promise<void> => {
+    const newJob = await addNewJob(jobToAdd, session?.user?.email)
+    setJobs([...jobs, newJob])
   }
 
-  const handleEditJob = (jobForEdit: JobColumns): void => {
-    const editedJobArray = editJob(jobForEdit)
-    setJobs(editedJobArray)
+  const handleEditJob = async (jobForEdit: JobColumns): Promise<void> => {
+    const editedJob = await editJob(jobForEdit, session?.user?.email)
+
+    const jobArrayWithEditedJob = jobs.map(job => {
+      if (job.id === editedJob.id) {
+        return editedJob
+      }
+
+      return job
+    })
+
+    setJobs(jobArrayWithEditedJob)
   }
 
-  const handleDeleteJob = (jobId: string): void => {
-    const deletedJobArray = deleteJob(jobId)
-    setJobs(deletedJobArray)
+  const handleDeleteJob = async (jobId: string): Promise<void> => {
+    const deletedJobId = await deleteJob(jobId, session?.user?.email)
+    const jobsWithoutDeletedJob = jobs.filter(job => job.id !== deletedJobId)
+    setJobs(jobsWithoutDeletedJob)
   }
 
   useEffect(() => {
-    const savedJobs = getAllJobsInLocalStorage()
-    setJobs(savedJobs)
-    setIsLoading(false)
-  }, [])
+    if (status !== 'loading') {
+      void (async () => {
+        const savedJobs = await getAllJobs(session?.user?.email)
+        setJobs(savedJobs)
+      })()
+    }
+  }, [status])
 
   return (
     <JobsContext.Provider
       value={{
-        isLoading,
+        isLoading: status === 'loading',
         jobs,
         handleAddJobsFromFile,
         handleAddJob,

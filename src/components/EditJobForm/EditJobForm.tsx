@@ -62,7 +62,7 @@ const EditJobForm = ({
 
   const onSubmit = (values: z.infer<typeof formSchema>): void => {
     form.reset()
-    handleEditJob({ ...row.original, ...values })
+    void handleEditJob({ ...row.original, ...values })
     handleSetOpenFn()
   }
 

@@ -27,6 +27,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env
 
 # vercel
 .vercel
@@ -43,6 +44,6 @@ hidden/*
 notes.md
 notes.txt
 
-# todo's
+# todo
 TODO.md
 TODO.*

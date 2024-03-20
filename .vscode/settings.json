@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["lucide", "papaparse", "tanstack", "unparse"]
+  "cSpell.words": [
+    "libsql",
+    "lucide",
+    "papaparse",
+    "sqlite",
+    "tanstack",
+    "unparse"
+  ]
 }

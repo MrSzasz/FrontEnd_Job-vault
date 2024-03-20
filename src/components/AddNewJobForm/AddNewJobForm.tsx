@@ -36,6 +36,7 @@ const formSchema = z.object({
   extra: z.string().optional(),
   cv: z.string().optional(),
   letter: z.string().optional(),
+  userEmail: z.string(),
 })
 
 const AddNewJobForm = ({
@@ -56,11 +57,12 @@ const AddNewJobForm = ({
       extra: '',
       cv: '',
       letter: '',
+      userEmail: '',
     },
   })
   const onSubmit = (values: z.infer<typeof formSchema>): void => {
     form.reset()
-    handleAddJob(values)
+    void handleAddJob(values)
 
     handleSubmitAndCloseFn()
   }

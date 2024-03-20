@@ -52,7 +52,7 @@ const AddJobForm = (): React.ReactElement => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <div className="flex w-full justify-between gap-4 md:justify-end">
-        <DialogTrigger asChild>
+        {/* <DialogTrigger asChild>
           <Button
             onClick={() => {
               setLoadingDataFromFile(true)
@@ -61,7 +61,7 @@ const AddJobForm = (): React.ReactElement => {
           >
             Load data from file
           </Button>
-        </DialogTrigger>
+        </DialogTrigger> */}
         <DialogTrigger asChild>
           <Button
             onClick={() => {
