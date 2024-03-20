@@ -22,6 +22,15 @@ export const metadata: Metadata = {
   authors: [
     { name: 'Tomas Lugo', url: 'https://lugo-tomas-portfolio.vercel.app/' },
   ],
+  openGraph: {
+    authors: 'Tomas Lugo',
+    title: 'Job Vault',
+    description:
+      "Effortlessly curate and save your preferred job listings with Job Vault's intuitive interface. Seamlessly store and organize opportunities that match your career goals, all at your fingertips. Start building your personalized job archive with Job Vault now",
+    url: 'https://job-vault.vercel.app/',
+    siteName: 'Job Vault',
+  },
+  robots: 'robots.txt',
 }
 
 const RootLayout = ({
