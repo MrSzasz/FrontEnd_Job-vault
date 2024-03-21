@@ -1,4 +1,4 @@
-import { type JobColumns } from '@/types/types'
+import type { DownloadedJobs } from '@/types/types'
 import FileSaver from 'file-saver'
 import Papa from 'papaparse'
 
@@ -10,7 +10,7 @@ import Papa from 'papaparse'
  * @return {void} This function does not return a value.
  */
 export const downloadJobsData = (
-  dataToSave: JobColumns[],
+  dataToSave: DownloadedJobs[],
   isCSV: boolean,
 ): void => {
   let data

@@ -32,8 +32,9 @@ import { useContext, useState } from 'react'
 import AddJobForm from '../AddJobForm/AddJobForm'
 import { JobsContext } from '@/context/JobContext'
 import { Download } from 'lucide-react'
-import { getAllJobs } from '@/services/handleJobs'
 import { downloadJobsData } from '@/services/fileConverter'
+import type { DownloadedJobs } from '@/types/types'
+import { dateFormatter } from '@/services/functions'
 
 interface DataTableProps<TData, TValue> {
   columns: Array<ColumnDef<TData, TValue>>
@@ -44,7 +45,7 @@ const DataTable = <TData, TValue>({
   columns,
   data,
 }: DataTableProps<TData, TValue>): React.ReactElement => {
-  const { isLoading } = useContext(JobsContext)
+  const { isLoading, jobs: currentJobs } = useContext(JobsContext)
   const [sorting, setSorting] = useState<SortingState>([])
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([])
 
@@ -62,10 +63,25 @@ const DataTable = <TData, TValue>({
     },
   })
 
-  const handleDownloadData = async (csv: boolean): Promise<void> => {
-    const jobs = getAllJobs()
+  const handleDownloadData = (csv: boolean): void => {
+    const jobsToDownload: DownloadedJobs[] = []
 
-    downloadJobsData(await jobs, csv)
+    currentJobs.forEach(job => {
+      jobsToDownload.push({
+        status: job.status,
+        position: job.position,
+        positionLink: job.positionLink,
+        company: job.company,
+        description: job.description,
+        requirements: job.requirements,
+        extra: job.extra,
+        date: dateFormatter(job.date),
+        cv: job.cv,
+        letter: job.letter,
+      })
+    })
+
+    downloadJobsData(jobsToDownload, csv)
   }
 
   return (
@@ -143,7 +159,7 @@ const DataTable = <TData, TValue>({
                   <DropdownMenuContent>
                     <DropdownMenuItem
                       onClick={() => {
-                        void handleDownloadData(false)
+                        handleDownloadData(false)
                       }}
                       className="cursor-pointer"
                     >
@@ -151,7 +167,7 @@ const DataTable = <TData, TValue>({
                     </DropdownMenuItem>
                     <DropdownMenuItem
                       onClick={() => {
-                        void handleDownloadData(true)
+                        handleDownloadData(true)
                       }}
                       className="cursor-pointer"
                     >

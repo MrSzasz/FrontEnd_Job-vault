@@ -10,6 +10,7 @@ import type { JobColumns } from '@/types/types'
 import { createContext, useEffect, useState } from 'react'
 import Papa from 'papaparse'
 import { useSession } from 'next-auth/react'
+import { useToast } from '@/components/ui/use-toast'
 
 interface JobsContextType {
   isLoading: boolean
@@ -36,7 +37,9 @@ const JobsProvider = ({
 }: {
   children: React.ReactNode
 }): React.ReactElement => {
+  const { toast } = useToast()
   const { data: session, status } = useSession()
+  const [isLoading, setIsLoading] = useState(true)
   const [jobs, setJobs] = useState<JobColumns[] | []>([])
 
   const handleAddJobsFromFile = (jobsFromFile: File): void => {
@@ -71,35 +74,109 @@ const JobsProvider = ({
   const handleAddJob = async (
     jobToAdd: JobColumns | Omit<JobColumns, 'id' | 'date'>,
   ): Promise<void> => {
-    const newJob = await addNewJob(jobToAdd, session?.user?.email)
-    setJobs([...jobs, newJob])
+    toast({
+      description: 'Saving job...',
+      duration: 10000,
+    })
+
+    try {
+      const newJob = await addNewJob(jobToAdd, session?.user?.email)
+
+      setJobs([...jobs, newJob])
+      toast({
+        description: 'Job saved!',
+        duration: 3500,
+      })
+    } catch (err) {
+      console.error(err)
+      toast({
+        description: 'Something went wrong, try again later',
+        duration: 3500,
+        variant: 'destructive',
+      })
+    }
   }
 
   const handleEditJob = async (jobForEdit: JobColumns): Promise<void> => {
-    const editedJob = await editJob(jobForEdit, session?.user?.email)
-
-    const jobArrayWithEditedJob = jobs.map(job => {
-      if (job.id === editedJob.id) {
-        return editedJob
-      }
-
-      return job
+    toast({
+      description: 'Saving job...',
+      duration: 10000,
     })
 
-    setJobs(jobArrayWithEditedJob)
+    try {
+      const editedJob = await editJob(jobForEdit, session?.user?.email)
+      const jobArrayWithEditedJob = jobs.map(job => {
+        if (job.id === editedJob.id) {
+          return editedJob
+        }
+
+        return job
+      })
+
+      setJobs(jobArrayWithEditedJob)
+
+      toast({
+        description: 'Job saved!',
+        duration: 3500,
+      })
+    } catch (err) {
+      console.error(err)
+      toast({
+        description: 'Something went wrong, try again later',
+        duration: 3500,
+        variant: 'destructive',
+      })
+    }
   }
 
   const handleDeleteJob = async (jobId: string): Promise<void> => {
-    const deletedJobId = await deleteJob(jobId, session?.user?.email)
-    const jobsWithoutDeletedJob = jobs.filter(job => job.id !== deletedJobId)
-    setJobs(jobsWithoutDeletedJob)
+    toast({
+      description: 'Deleting job...',
+      duration: 10000,
+    })
+
+    try {
+      const deletedJobId = await deleteJob(jobId, session?.user?.email)
+      const jobsWithoutDeletedJob = jobs.filter(job => job.id !== deletedJobId)
+      setJobs(jobsWithoutDeletedJob)
+
+      toast({
+        description: 'Job deleted!',
+        duration: 3500,
+      })
+    } catch (error) {
+      console.error(error)
+      toast({
+        description: 'Something went wrong, try again later',
+        duration: 3500,
+        variant: 'destructive',
+      })
+    }
   }
 
   useEffect(() => {
+    toast({
+      description: 'Getting jobs from database...',
+      duration: 10000,
+    })
     if (status !== 'loading') {
       void (async () => {
-        const savedJobs = await getAllJobs(session?.user?.email)
-        setJobs(savedJobs)
+        try {
+          const savedJobs = await getAllJobs(session?.user?.email)
+          setJobs(savedJobs)
+          setIsLoading(false)
+          toast({
+            description: 'Done!',
+            duration: 1500,
+          })
+        } catch (err) {
+          console.error(err)
+          toast({
+            description: 'Something went wrong, try again later',
+            duration: 3500,
+            variant: 'destructive',
+          })
+        }
       })()
     }
   }, [status])
@@ -107,7 +184,8 @@ const JobsProvider = ({
   return (
     <JobsContext.Provider
       value={{
-        isLoading: status === 'loading',
+        // isLoading: status === 'loading',
+        isLoading,
         jobs,
         handleAddJobsFromFile,
         handleAddJob,

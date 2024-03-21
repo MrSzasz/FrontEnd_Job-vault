@@ -9,3 +9,8 @@ export const capitalizeFirst = (string: string): string => {
 
   return capitalized
 }
+
+export const dateFormatter = (timestamp: Date | string): string => {
+  const formattedData = new Intl.DateTimeFormat().format(Number(timestamp))
+  return formattedData
+}

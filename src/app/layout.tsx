@@ -5,6 +5,7 @@ import type { Metadata } from 'next'
 import { Kanit } from 'next/font/google'
 import '../styles/globals.css'
 import SessionWrapper from '@/components/SessionWrapper/SessionWrapper'
+import { Toaster } from '@/components/ui/toaster'
 
 const fontKanit = Kanit({
   // https://fonts.google.com/specimen/Kanit
@@ -14,6 +15,7 @@ const fontKanit = Kanit({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://job-vault.vercel.app/'),
   title: 'Job Vault',
   description:
     "Effortlessly curate and save your preferred job listings with Job Vault's intuitive interface. Seamlessly store and organize opportunities that match your career goals, all at your fingertips. Start building your personalized job archive with Job Vault now",
@@ -53,7 +55,10 @@ const RootLayout = ({
           disableTransitionOnChange
         >
           <SessionWrapper>
-            <JobsProvider>{children}</JobsProvider>
+            <JobsProvider>
+              {children}
+              <Toaster />
+            </JobsProvider>
           </SessionWrapper>
         </ThemeProvider>
       </body>

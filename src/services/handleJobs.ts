@@ -63,7 +63,7 @@ export const addNewJob = async (
   const newJobWithID = {
     ...newJob,
     id: uuidv4(),
-    date: new Date().toLocaleDateString(),
+    date: Date.now().toString(),
     userEmail: userEmail ?? '',
   }
 

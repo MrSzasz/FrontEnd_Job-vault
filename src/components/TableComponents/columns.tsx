@@ -12,7 +12,7 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { statusColors, statusIcons } from '@/services/statusColors'
-import { capitalizeFirst } from '@/services/functions'
+import { capitalizeFirst, dateFormatter } from '@/services/functions'
 
 export const columns: Array<ColumnDef<JobColumns>> = [
   {
@@ -108,11 +108,12 @@ export const columns: Array<ColumnDef<JobColumns>> = [
       )
     },
     cell: ({ row }) => {
+      const formattedDate = dateFormatter(row.original.date)
       return (
         <span
           className={`${row.original.status === 'expired' && statusColors.expired}`}
         >
-          {row.original.date as string}
+          {formattedDate}
         </span>
       )
     },

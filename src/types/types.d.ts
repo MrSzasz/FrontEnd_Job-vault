@@ -19,3 +19,16 @@ export interface JobColumns {
   letter?: string | null | undefined
   userEmail: string
 }
+
+export interface DownloadedJobs {
+  status: statusType
+  position: string
+  positionLink: string
+  company: string
+  description: string
+  requirements: string
+  extra?: string | null | undefined
+  date: string
+  cv?: string | null | undefined
+  letter?: string | null | undefined
+}
