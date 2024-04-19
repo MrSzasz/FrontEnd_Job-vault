@@ -5,7 +5,8 @@ import {
   deleteJobInDB,
   getJobsFromDB,
   updateJobInDB,
-} from '@/app/actions/jobsActions'
+  // } from '@/app/actions/jobsActions'
+} from '@/services/handleDbJobs'
 
 /**
  * Retrieves jobs from local storage, initializes if not present.
@@ -145,7 +146,7 @@ export const deleteJob = async (
 
   try {
     const res = await deleteJobInDB(id)
-    return res.id
+    return res
   } catch (err) {
     console.error(err)
     throw new Error('Something went wrong, try again later')
