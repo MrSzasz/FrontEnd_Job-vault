@@ -5,7 +5,6 @@ import {
   deleteJobInDB,
   getJobsFromDB,
   updateJobInDB,
-  // } from '@/app/actions/jobsActions'
 } from '@/services/handleDbJobs'
 
 /**
