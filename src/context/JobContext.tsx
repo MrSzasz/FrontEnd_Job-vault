@@ -184,7 +184,6 @@ const JobsProvider = ({
   return (
     <JobsContext.Provider
       value={{
-        // isLoading: status === 'loading',
         isLoading,
         jobs,
         handleAddJobsFromFile,
