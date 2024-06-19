@@ -9,6 +9,7 @@ import {
   getSortedRowModel,
   type ColumnFiltersState,
   getFilteredRowModel,
+  getPaginationRowModel,
 } from '@tanstack/react-table'
 import {
   DropdownMenu,
@@ -35,6 +36,7 @@ import { Download } from 'lucide-react'
 import { downloadJobsData } from '@/services/fileConverter'
 import type { DownloadedJobs } from '@/types/types'
 import { dateFormatter } from '@/services/functions'
+import { Button } from '../ui/button'
 
 interface DataTableProps<TData, TValue> {
   columns: Array<ColumnDef<TData, TValue>>
@@ -57,6 +59,7 @@ const DataTable = <TData, TValue>({
     getSortedRowModel: getSortedRowModel(),
     onColumnFiltersChange: setColumnFilters,
     getFilteredRowModel: getFilteredRowModel(),
+    getPaginationRowModel: getPaginationRowModel(),
     state: {
       sorting,
       columnFilters,
@@ -109,9 +112,9 @@ const DataTable = <TData, TValue>({
                     {header.isPlaceholder
                       ? null
                       : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext(),
-                        )}
+                        header.column.columnDef.header,
+                        header.getContext(),
+                      )}
                   </TableHead>
                 )
               })}
@@ -147,8 +150,7 @@ const DataTable = <TData, TValue>({
         {!isLoading && (
           <TableFooter className="bg-inherit">
             <TableRow>
-              <TableCell colSpan={2}></TableCell>
-              <TableCell colSpan={3} className="text-right">
+              <TableCell colSpan={3} className='text-start pl-4'>
                 <DropdownMenu>
                   <DropdownMenuTrigger>
                     <div className="flex w-fit items-end justify-center gap-2">
@@ -175,6 +177,27 @@ const DataTable = <TData, TValue>({
                     </DropdownMenuItem>
                   </DropdownMenuContent>
                 </DropdownMenu>
+
+              </TableCell>
+              <TableCell colSpan={2} className="text-right">
+                <div className="flex items-center justify-end space-x-2 py-4">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => { table.previousPage(); }}
+                    disabled={!table.getCanPreviousPage()}
+                  >
+                    Previous
+                  </Button>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={() => { table.nextPage(); }}
+                    disabled={!table.getCanNextPage()}
+                  >
+                    Next
+                  </Button>
+                </div>
               </TableCell>
             </TableRow>
           </TableFooter>
