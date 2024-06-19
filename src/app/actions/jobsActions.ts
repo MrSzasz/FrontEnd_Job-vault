@@ -3,7 +3,7 @@
 import { db } from '@/db/db'
 import { jobs } from '@/db/schema'
 import type { JobColumns } from '@/types/types'
-import { eq } from 'drizzle-orm'
+import { desc, eq } from 'drizzle-orm'
 
 /**
  * Retrieves jobs from the database based on the provided email.
@@ -18,6 +18,7 @@ export const getJobsFromDB = async (
     .select()
     .from(jobs)
     .where(eq(jobs.userEmail, email))
+    .orderBy(desc(jobs.date))
 
   return jobsInTurso as JobColumns[] | []
 }
