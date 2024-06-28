@@ -42,7 +42,7 @@ export const getAllJobs = async (
   try {
     const res = await getJobsFromDB(userEmail)
 
-    return res
+    return res.sort((a, b) => new Date(b.date).valueOf() - new Date(a.date).valueOf())
   } catch (err) {
     console.error(err)
     throw new Error('Something went wrong, please try again later')
@@ -70,7 +70,7 @@ export const addNewJob = async (
   if (userEmail === null || userEmail === undefined) {
     const savedJobs = getJobsFromLocalStorage()
 
-    const jobsWithNewJob = [...savedJobs, newJobWithID]
+    const jobsWithNewJob = [newJobWithID, ...savedJobs]
 
     localStorage.setItem('jobs', JSON.stringify(jobsWithNewJob))
 

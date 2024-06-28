@@ -26,10 +26,10 @@ interface JobsContextType {
 export const JobsContext = createContext<JobsContextType>({
   isLoading: true,
   jobs: [],
-  handleAddJobsFromFile: () => {},
-  handleAddJob: async () => {},
-  handleDeleteJob: async () => {},
-  handleEditJob: async () => {},
+  handleAddJobsFromFile: () => { },
+  handleAddJob: async () => { },
+  handleDeleteJob: async () => { },
+  handleEditJob: async () => { },
 })
 
 const JobsProvider = ({
@@ -82,7 +82,7 @@ const JobsProvider = ({
     try {
       const newJob = await addNewJob(jobToAdd, session?.user?.email)
 
-      setJobs([...jobs, newJob])
+      setJobs([newJob, ...jobs])
       toast({
         description: 'Job saved!',
         duration: 3500,
